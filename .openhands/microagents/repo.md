@@ -8,8 +8,7 @@
 
 ## Setup Instructions
 
-1. Run `npm install` to install all dependencies
-2. Run `.openhands/setup.sh` to set up pre-commit hooks
+Run `.openhands/setup.sh` to install dependencies and set up pre-commit hooks
 
 ## Development Workflow
 
