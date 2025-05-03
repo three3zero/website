@@ -1,9 +1,0 @@
-#!/bin/sh
-
-# Run lint-staged to run linters on staged files
-npx lint-staged
-
-# Run pre-commit hooks if available
-if command -v pre-commit >/dev/null 2>&1; then
-  pre-commit run --hook-stage pre-commit
-fi

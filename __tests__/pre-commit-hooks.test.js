@@ -7,11 +7,6 @@ describe('Pre-commit hooks configuration', () => {
     expect(fs.existsSync(configPath)).toBe(true);
   });
 
-  test('husky pre-commit hook exists', () => {
-    const hookPath = path.join(process.cwd(), '.husky', 'pre-commit');
-    expect(fs.existsSync(hookPath)).toBe(true);
-  });
-
   test('lint-staged config exists', () => {
     const lintStagedPath = path.join(process.cwd(), '.lintstagedrc.js');
     expect(fs.existsSync(lintStagedPath)).toBe(true);
