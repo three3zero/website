@@ -1,0 +1,39 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-json
+      - id: check-added-large-files
+
+  - repo: local
+    hooks:
+      - id: npm-lint
+        name: ESLint
+        entry: npm run lint
+        language: system
+        types: [javascript, jsx, ts, tsx]
+        pass_filenames: false
+
+      - id: npm-typecheck
+        name: TypeScript
+        entry: npm run typecheck
+        language: system
+        types: [javascript, jsx, ts, tsx]
+        pass_filenames: false
+
+      - id: npm-format
+        name: Prettier
+        entry: npm run format
+        language: system
+        types: [javascript, jsx, ts, tsx, json, yaml]
+        pass_filenames: false
+
+      - id: npm-test
+        name: Jest Tests
+        entry: npm test
+        language: system
+        types: [javascript, jsx, ts, tsx]
+        pass_filenames: false
