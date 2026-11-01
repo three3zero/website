@@ -20,6 +20,10 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      # configure-pages reads the Pages site config to get the deploy base URL.
+      pages: read
     steps:
       - name: Check out
         uses: actions/checkout@v7
