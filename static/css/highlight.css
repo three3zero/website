@@ -1,0 +1,29 @@
+/*
+  Syntax highlighting for Zola's class-based output (markdown.highlighting.style = "class").
+  The theme in highlight/three-three-zero.json produces two token classes; they are mapped
+  to CSS variables here so code follows the active light or dark theme without a rebuild.
+    .z-1  keywords  -> --accent
+    .z-2  comments  -> --muted
+  Everything else inherits --fg from <pre>.
+*/
+.z-code { color: var(--fg); background-color: var(--code); }
+.z-1 { color: var(--accent); }
+.z-2 { color: var(--muted); }
+.z-b { font-weight: bold; }
+.z-i { font-style: italic; }
+.z-u { text-decoration: underline; }
+.z-s { text-decoration: line-through; }
+.z-us { text-decoration: underline line-through; }
+
+.giallo-l {
+  display: inline;
+}
+.giallo-ln {
+  display: inline-block;
+  user-select: none;
+  margin-right: 0.4em;
+  padding: 0.4em;
+  min-width: 3ch;
+  text-align: right;
+  opacity: 0.8;
+}

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page.title }} · {{ config.title }}{% endblock title %}
+{% block description %}{{ page.description or config.description }}{% endblock description %}
+{% block og_type %}article{% endblock og_type %}
+{% block nav_writing %} aria-current="page"{% endblock nav_writing %}
+
+{% block content %}
+<article class="article">
+  <a class="back-link" href="{{ writing_url }}">← All writing</a>
+
+  <header class="article-header">
+    <p class="eyebrow">{% if page.taxonomies?.kind %}{{ page.taxonomies.kind[0] }} · {% endif %}<time datetime="{{ page.date }}">{{ page.date | date(format="%B %Y") }}</time></p>
+    <h1>{{ page.title }}</h1>
+    {%- if page.description %}
+    <p class="dek">{{ page.description }}</p>
+    {%- endif %}
+  </header>
+
+  {%- include "partials/facts.html" %}
+
+  <div class="prose">
+    {{ page.content | safe }}
+  </div>
+</article>
+
+{#- Pages are sorted newest first; in Zola 0.23 `higher` is the next older post. #}
+{%- if page.higher %}
+<nav class="next-article" aria-label="Next article">
+  <span class="label">Next</span>
+  <a href="{{ page.higher.permalink }}">{{ page.higher.title }}</a>
+</nav>
+{%- endif %}
+{% endblock content %}

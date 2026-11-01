@@ -1,0 +1,29 @@
+# Production base_url. The GitHub Pages workflow overrides this with
+# `zola build --base-url` so the same source works on any host.
+base_url = "https://www.threethreezero.com"
+title = "Three Three Zero"
+description = "Engineering for financial technology. Secure, scalable software for exchange and banking clients."
+default_language = "en"
+
+compile_sass = false
+minify_html = false
+build_search_index = false
+generate_sitemap = true
+generate_robots_txt = true
+
+generate_feeds = false
+feed_filenames = ["atom.xml"]
+
+taxonomies = [
+  { name = "kind", feed = false, paginate_by = 20 },
+]
+
+[markdown.highlighting]
+style = "class"
+theme = "three-three-zero"
+extra_themes = ["highlight/three-three-zero.json"]
+
+[extra]
+legal_name = "3304813 Nova Scotia Ltd."
+location = "Nova Scotia, Canada"
+kinds = ["Case study", "Technical note", "Essay"]

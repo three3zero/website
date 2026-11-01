@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Three Three Zero Writing</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:inherit;text-decoration:none}
+a:hover{text-decoration:underline;text-underline-offset:4px}
+button{font-family:inherit}
+</style>
+</helmet>
+<div style="background: {{t.bg}}; color: {{t.fg}}; min-height: 980px; font-family: 'Newsreader', Georgia, serif; display: flex; flex-direction: column; align-items: center">
+<div style="width: 100%; max-width: 1040px; box-sizing: border-box; padding: 0 32px; display: flex; flex-direction: column">
+
+<header style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px; padding: 32px 0; border-bottom: 1px solid {{t.line}}">
+<a href="Main.dc.html" style="font-size: 22px; font-weight: 500; letter-spacing: 0.01em">Three Three Zero</a>
+<nav aria-label="Primary" style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 28px; font-family: 'Inter', system-ui, sans-serif; font-size: 14px">
+<a href="Writing.dc.html" style="color: {{t.fg}}; border-bottom: 1px solid {{t.accent}}">Writing</a>
+<a href="Main.dc.html#about" style="color: {{t.muted}}">About</a>
+<a href="Main.dc.html#contact" style="color: {{t.muted}}">Contact</a>
+<button onClick="{{toggle}}" aria-label="{{toggleLabel}}" style="min-height: 44px; padding: 0 16px; background: transparent; color: {{t.fg}}; border: 1px solid {{t.line}}; border-radius: 999px; font-size: 13px; cursor: pointer">{{toggleText}}</button>
+</nav>
+</header>
+
+<section style="padding: 88px 0 40px; display: flex; flex-direction: column; gap: 20px">
+<h1 style="margin: 0; font-size: 56px; line-height: 1.1; font-weight: 400; letter-spacing: -0.015em">Writing</h1>
+<p style="margin: 0; max-width: 600px; font-size: 21px; line-height: 1.6; color: {{t.muted}}">Case studies and technical notes from our work in financial technology.</p>
+<div role="group" aria-label="Filter by type" style="display: flex; flex-wrap: wrap; gap: 8px; padding-top: 16px; font-family: 'Inter', system-ui, sans-serif; font-size: 14px">
+<sc-for list="{{filters}}" as="f" hint-placeholder-count="3">
+<button onClick="{{f.pick}}" aria-pressed="{{f.on}}" style="min-height: 44px; padding: 0 18px; border-radius: 999px; cursor: pointer; border: 1px solid {{f.border}}; background: {{f.bg}}; color: {{f.fg}}">{{f.label}}</button>
+</sc-for>
+</div>
+</section>
+
+<section aria-label="Articles" style="display: flex; flex-direction: column; border-top: 1px solid {{t.line}}; margin-bottom: 96px">
+<sc-for list="{{posts}}" as="p" hint-placeholder-count="5">
+<sc-if value="{{p.show}}" hint-placeholder-val="{{ true }}">
+<a href="Article.dc.html" style="display: flex; flex-wrap: wrap; gap: 8px 64px; padding: 32px 0; border-bottom: 1px solid {{t.line}}">
+<span style="flex: 1 1 200px; max-width: 260px; font-family: 'Inter', system-ui, sans-serif; font-size: 13px; line-height: 1.7; color: {{t.muted}}">{{p.date}}<br>{{p.kind}}</span>
+<span style="flex: 999 1 460px; min-width: 0; display: flex; flex-direction: column; gap: 10px">
+<span style="font-size: 30px; line-height: 1.22; font-weight: 400">{{p.title}}</span>
+<span style="font-size: 18px; line-height: 1.55; color: {{t.muted}}; max-width: 640px">{{p.dek}}</span>
+</span>
+</a>
+</sc-if>
+</sc-for>
+</section>
+
+<footer style="padding: 32px 0 56px; border-top: 1px solid {{t.line}}; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 32px; font-family: 'Inter', system-ui, sans-serif; font-size: 13px; color: {{t.muted}}">
+<span>© 2026 3304813 Nova Scotia Ltd., operating as Three Three Zero.</span>
+<span>Nova Scotia, Canada</span>
+</footer>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1280,"height":980}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const theme = (this.state && this.state.theme) || this.props.theme || 'light';
+    const dark = theme === 'dark';
+    const t = dark
+      ? { bg: '#0E1012', fg: '#ECEAE5', muted: '#A3A7AE', line: '#2A2D32', accent: '#8EC1D3' }
+      : { bg: '#FBFAF8', fg: '#14161A', muted: '#565B63', line: '#E3E1DB', accent: '#1D4E5F' };
+    const filter = (this.state && this.state.filter) || 'All';
+    const all = [
+      { date: 'Oct 2026', kind: 'Case study', title: 'Event sourcing order flow on Kafka', dek: 'How we structured topics, ordering guarantees, and replay for a latency-sensitive trading workload.' },
+      { date: 'Sep 2026', kind: 'Technical note', title: 'Drawing the matching engine boundary in Rust', dek: 'Where the type system helps, where it does not, and the interfaces we kept deliberately small.' },
+      { date: 'Aug 2026', kind: 'Essay', title: 'Reproducible infrastructure with a small blast radius', dek: 'Terraform layout, state isolation, and the review habits that keep changes boring.' },
+      { date: 'Jun 2026', kind: 'Case study', title: 'Zero-downtime Kubernetes upgrades for a latency-sensitive service', dek: 'A rollout plan, the failure modes we planned for, and what the first rehearsal taught us.' },
+      { date: 'Apr 2026', kind: 'Technical note', title: 'Designing idempotent settlement jobs', dek: 'Making retries safe by construction instead of by convention.' }
+    ];
+    const kinds = ['All', 'Case study', 'Technical note', 'Essay'];
+    return {
+      t,
+      toggle: () => this.setState({ theme: dark ? 'light' : 'dark' }),
+      toggleText: dark ? 'Light' : 'Dark',
+      toggleLabel: dark ? 'Switch to light theme' : 'Switch to dark theme',
+      filters: kinds.map((k) => {
+        const on = k === filter;
+        return {
+          label: k,
+          on: on ? 'true' : 'false',
+          pick: () => this.setState({ filter: k }),
+          border: on ? t.fg : t.line,
+          bg: on ? t.fg : 'transparent',
+          fg: on ? t.bg : t.fg
+        };
+      }),
+      posts: all.map((p) => ({ ...p, show: filter === 'All' || p.kind === filter }))
+    };
+  }
+}
+</script>
+</body>
+</html>

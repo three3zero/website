@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Types · Writing · {{ config.title }}{% endblock title %}
+{% block nav_writing %} aria-current="page"{% endblock nav_writing %}
+
+{% block content %}
+<section class="page-intro" aria-labelledby="page-title">
+  <h1 id="page-title">Writing by type</h1>
+</section>
+{%- if terms | length > 0 %}
+<ul class="post-list">
+  {%- for term in terms %}
+  <li>
+    <a class="post-row" href="{{ term.permalink }}">
+      <span class="meta">{{ term.pages | length }} {{ "article" if term.pages | length == 1 else "articles" }}</span>
+      <span class="text"><span class="title">{{ term.name }}</span></span>
+    </a>
+  </li>
+  {%- endfor %}
+</ul>
+{%- else %}
+<p class="empty">Nothing published yet. Check back soon.</p>
+{%- endif %}
+{% endblock content %}

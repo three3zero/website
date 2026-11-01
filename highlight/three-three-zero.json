@@ -1,0 +1,48 @@
+{
+  "name": "three-three-zero",
+  "type": "light",
+  "colors": {
+    "editor.background": "#F2F0EB",
+    "editor.foreground": "#14161A"
+  },
+  "tokenColors": [
+    {
+      "settings": {
+        "foreground": "#14161A",
+        "background": "#F2F0EB"
+      }
+    },
+    {
+      "scope": [
+        "comment",
+        "punctuation.definition.comment"
+      ],
+      "settings": {
+        "foreground": "#565B63"
+      }
+    },
+    {
+      "scope": [
+        "keyword",
+        "storage",
+        "storage.type",
+        "storage.modifier"
+      ],
+      "settings": {
+        "foreground": "#1D4E5F"
+      }
+    },
+    {
+      "scope": [
+        "keyword.operator",
+        "punctuation",
+        "keyword.operator.namespace",
+        "keyword.operator.key-value",
+        "keyword.operator.assignment"
+      ],
+      "settings": {
+        "foreground": "#14161A"
+      }
+    }
+  ]
+}

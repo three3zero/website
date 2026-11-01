@@ -2,35 +2,23 @@
 
 ## Environment
 
-- **Language**: TypeScript/JavaScript
-- **Runtime**: Node.js
-- **Package Manager**: npm
+- **Site generator**: [Zola](https://www.getzola.org/) 0.23 (static site, Tera v2 templates)
+- **Content**: Markdown with TOML front matter in `content/`
+- **Deploy**: GitHub Pages via `.github/workflows/pages.yml` on push to `main`
 
 ## Setup Instructions
 
-Run `.openhands/setup.sh` to install dependencies and set up pre-commit hooks
+Run `.openhands/setup.sh` to set up pre-commit hooks. Zola must be installed separately.
 
 ## Development Workflow
 
 1. Make your changes
-2. Pre-commit hooks will automatically run to check:
-   - TypeScript type checking
-   - ESLint for code quality
-   - Prettier for code formatting
-   - Jest tests
-3. If all checks pass, your commit will proceed
-4. If any checks fail, fix the issues and try again
+2. Run `zola serve --drafts` to preview, and `zola check` to validate links
+3. Pre-commit hooks run basic file checks and `zola check`
 
-## Testing
+## Design
 
-- Run `npm test` to execute all tests
-- All tests must pass before committing
-
-## Before Pushing
-
-- Ensure all tests pass
-- Make sure all pre-commit hooks pass successfully
-- Verify that your changes meet the project's code quality standards
+The approved design brief and reference artboards are in `docs/design/`. Match them.
 
 ## Commit Messages
 

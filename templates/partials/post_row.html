@@ -1,0 +1,11 @@
+<li>
+  <a class="post-row" href="{{ post.permalink }}">
+    <span class="meta">{{ post.date | date(format="%b %Y") }}<br>{{ post.taxonomies?.kind?[0] or "" }}</span>
+    <span class="text">
+      <span class="title">{{ post.title }}</span>
+      {%- if post.description %}
+      <span class="dek">{{ post.description }}</span>
+      {%- endif %}
+    </span>
+  </a>
+</li>

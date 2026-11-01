@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}{{ section.title }} · {{ config.title }}{% endblock title %}
+{% block description %}{{ section.description or config.description }}{% endblock description %}
+{% block nav_writing %} aria-current="page"{% endblock nav_writing %}
+
+{% block content %}
+<section class="page-intro" aria-labelledby="page-title">
+  <h1 id="page-title">{{ section.title }}</h1>
+  {%- if section.description %}
+  <p class="lede">{{ section.description }}</p>
+  {%- endif %}
+  {%- set active = "All" %}
+  {%- include "partials/filter_chips.html" %}
+</section>
+
+{%- set posts = paginator.pages if paginator else section.pages %}
+{%- if posts | length > 0 %}
+<ul class="post-list" aria-label="Articles">
+  {%- for post in posts %}
+  {%- include "partials/post_row.html" %}
+  {%- endfor %}
+</ul>
+{%- include "partials/pagination.html" %}
+{%- else %}
+<p class="empty">Nothing published yet. Check back soon.</p>
+{%- endif %}
+{% endblock content %}

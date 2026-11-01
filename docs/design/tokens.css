@@ -1,0 +1,70 @@
+/*
+  Three Three Zero design tokens.
+  Default follows the system theme. An explicit data-theme on <html> overrides it.
+  All text/background pairs below meet WCAG AA (4.5:1).
+*/
+
+:root {
+  --bg: #FBFAF8;
+  --fg: #14161A;
+  --muted: #565B63;
+  --line: #E3E1DB;
+  --accent: #1D4E5F;
+  --code: #F2F0EB;
+
+  --font-serif: "Newsreader", Georgia, serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --container: 1040px;
+  --gutter: 32px;
+  --article: 700px;
+  --radius-pill: 999px;
+  --radius-code: 6px;
+  --tap: 44px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0E1012;
+    --fg: #ECEAE5;
+    --muted: #A3A7AE;
+    --line: #2A2D32;
+    --accent: #8EC1D3;
+    --code: #16191C;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #0E1012;
+  --fg: #ECEAE5;
+  --muted: #A3A7AE;
+  --line: #2A2D32;
+  --accent: #8EC1D3;
+  --code: #16191C;
+}
+
+:root[data-theme="light"] {
+  --bg: #FBFAF8;
+  --fg: #14161A;
+  --muted: #565B63;
+  --line: #E3E1DB;
+  --accent: #1D4E5F;
+  --code: #F2F0EB;
+}
+
+html { color-scheme: light dark; }
+:root[data-theme="light"] { color-scheme: light; }
+:root[data-theme="dark"] { color-scheme: dark; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-serif);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
