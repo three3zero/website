@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Page not found · {{ config.title }}{% endblock title %}
+
+{% block content %}
+<section class="not-found" aria-labelledby="page-title">
+  <p class="eyebrow">404</p>
+  <h1 id="page-title">This page does not exist.</h1>
+  <p class="lede">It may have moved, or the link may be wrong.</p>
+  <div class="actions">
+    <a class="button" href="{{ home_url }}">Go to the home page</a>
+  </div>
+</section>
+{% endblock content %}

@@ -1,0 +1,15 @@
+{%- set kinds = get_taxonomy(kind="kind", required=false) -%}
+{%- if kinds and kinds.items | length > 1 %}
+<nav aria-label="Filter by type">
+  <ul class="chips">
+    <li><a class="chip" href="{{ get_url(path='@/writing/_index.md') }}"{% if active == "All" %} aria-current="page"{% endif %}>All</a></li>
+    {%- for name in config.extra.kinds %}
+    {%- for term in kinds.items %}
+    {%- if term.name == name %}
+    <li><a class="chip" href="{{ term.permalink }}"{% if active == name %} aria-current="page"{% endif %}>{{ name }}</a></li>
+    {%- endif %}
+    {%- endfor %}
+    {%- endfor %}
+  </ul>
+</nav>
+{%- endif %}

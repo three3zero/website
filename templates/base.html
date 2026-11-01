@@ -1,0 +1,94 @@
+{%- set writing = get_section(path="writing/_index.md") -%}
+{%- set has_posts = writing.pages | length > 0 -%}
+{%- set home_url = get_url(path="/") -%}
+{%- set writing_url = get_url(path="@/writing/_index.md") -%}
+{%- block vars %}{% endblock vars -%}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("theme");
+        if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+      } catch (e) {}
+    })();
+  </script>
+  {%- set page_title %}{% block title %}{{ config.title }}{% endblock title %}{% endset %}
+  {%- set page_description %}{% block description %}{{ config.description }}{% endblock description %}{% endset %}
+  <title>{{ page_title | trim }}</title>
+  <meta name="description" content="{{ page_description | trim }}">
+  {%- if current_url is defined %}
+  <link rel="canonical" href="{{ current_url }}">
+  <meta property="og:url" content="{{ current_url }}">
+  {%- endif %}
+  <meta property="og:site_name" content="{{ config.title }}">
+  <meta property="og:title" content="{{ page_title | trim }}">
+  <meta property="og:description" content="{{ page_description | trim }}">
+  <meta property="og:type" content="{% block og_type %}website{% endblock og_type %}">
+  <meta property="og:locale" content="en_CA">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="{{ page_title | trim }}">
+  <meta name="twitter:description" content="{{ page_description | trim }}">
+  <link rel="alternate" type="application/atom+xml" title="{{ config.title }}: Writing" href="{{ get_url(path='writing/atom.xml', trailing_slash=false) }}">
+  <link rel="preload" href="{{ get_url(path='fonts/newsreader-latin-400-normal.woff2', trailing_slash=false) }}" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="{{ get_url(path='fonts/inter-latin-400-normal.woff2', trailing_slash=false) }}" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="{{ get_url(path='css/tokens.css', trailing_slash=false, cachebust=true) }}">
+  <link rel="stylesheet" href="{{ get_url(path='css/site.css', trailing_slash=false, cachebust=true) }}">
+  <link rel="stylesheet" href="{{ get_url(path='css/highlight.css', trailing_slash=false, cachebust=true) }}">
+  <link rel="icon" href="{{ get_url(path='favicon.svg', trailing_slash=false) }}" type="image/svg+xml">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="container">
+    <header class="site-header">
+      <a class="wordmark" href="{{ home_url }}">Three Three Zero</a>
+      <nav class="site-nav" aria-label="Primary">
+        {%- if has_posts %}
+        <a href="{{ writing_url }}"{% block nav_writing %}{% endblock nav_writing %}><span>Writing</span></a>
+        {%- endif %}
+        <a href="{{ home_url }}#about"><span>About</span></a>
+        <a href="{{ home_url }}#contact"><span>Contact</span></a>
+        <button class="theme-toggle" type="button" data-theme-toggle hidden aria-label="Switch to dark theme">Dark</button>
+      </nav>
+    </header>
+
+    <main id="content" tabindex="-1">
+      {%- block content %}{% endblock content %}
+    </main>
+
+    <footer class="site-footer">
+      <span>© {{ now() | date(format="%Y") }} {{ config.extra.legal_name }}, operating as {{ config.title }}.</span>
+      <span>{{ config.extra.location }}</span>
+    </footer>
+  </div>
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var button = document.querySelector("[data-theme-toggle]");
+      if (!button) return;
+      var media = window.matchMedia("(prefers-color-scheme: dark)");
+      function current() {
+        return root.getAttribute("data-theme") || (media.matches ? "dark" : "light");
+      }
+      function render() {
+        var next = current() === "dark" ? "light" : "dark";
+        button.textContent = next === "dark" ? "Dark" : "Light";
+        button.setAttribute("aria-label", "Switch to " + next + " theme");
+      }
+      button.addEventListener("click", function () {
+        var next = current() === "dark" ? "light" : "dark";
+        root.setAttribute("data-theme", next);
+        try { localStorage.setItem("theme", next); } catch (e) {}
+        render();
+      });
+      if (media.addEventListener) media.addEventListener("change", render);
+      button.hidden = false;
+      render();
+    })();
+  </script>
+</body>
+</html>

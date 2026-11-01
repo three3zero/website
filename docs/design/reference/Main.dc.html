@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Three Three Zero Home</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&amp;family=Inter:wght@400;500&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:inherit;text-decoration:none}
+a:hover{text-decoration:underline;text-underline-offset:4px}
+button{font-family:inherit}
+</style>
+</helmet>
+<div style="background: {{t.bg}}; color: {{t.fg}}; min-height: 1560px; font-family: 'Newsreader', Georgia, serif; display: flex; flex-direction: column; align-items: center">
+<div style="width: 100%; max-width: 1040px; box-sizing: border-box; padding: 0 32px; display: flex; flex-direction: column">
+
+<header style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px; padding: 32px 0; border-bottom: 1px solid {{t.line}}">
+<a href="Main.dc.html" style="font-size: 40px; font-weight: 500; letter-spacing: 0.01em">Three Three Zero</a>
+<nav aria-label="Primary" style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 28px; font-family: 'Inter', system-ui, sans-serif; font-size: 14px">
+<a href="Writing.dc.html" style="color: {{t.muted}}">Writing</a>
+<a href="#about" style="color: {{t.muted}}">About</a>
+<a href="#contact" style="color: {{t.muted}}">Contact</a>
+<button onClick="{{toggle}}" aria-label="{{toggleLabel}}" style="min-height: 44px; padding: 0 16px; background: transparent; color: {{t.fg}}; border: 1px solid {{t.line}}; border-radius: 999px; font-size: 13px; cursor: pointer">{{toggleText}}</button>
+</nav>
+</header>
+
+<section style="padding: 120px 0 96px; display: flex; flex-direction: column; gap: 32px">
+<p style="margin: 0; font-family: 'Inter', system-ui, sans-serif; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: {{t.accent}}">Engineering for financial technology</p>
+<h1 style="margin: 0; max-width: 860px; font-size: 60px; line-height: 1.08; font-weight: 400; letter-spacing: -0.015em">Focused on securing financial technologies in the age of AI</h1>
+<p style="margin: 0; max-width: 620px; font-size: 21px; line-height: 1.6; color: {{t.muted}}">We write secure, scalable software for exchange and banking clients, and like to talk about how we think about it: the decisions, the trade-offs, and what we would do differently.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 12px 28px; align-items: center; font-family: 'Inter', system-ui, sans-serif; font-size: 15px">
+<a href="#contact" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 22px; background: {{t.fg}}; color: {{t.bg}}; border-radius: 999px">Start a conversation</a>
+<a href="Writing.dc.html" style="color: {{t.accent}}; min-height: 44px; display: inline-flex; align-items: center">Read our writing</a>
+</div>
+</section>
+
+<section aria-labelledby="recent" style="padding: 56px 0; border-top: 1px solid {{t.line}}; display: flex; flex-wrap: wrap; gap: 24px 64px">
+<div style="flex: 1 1 200px; max-width: 260px">
+<h2 id="recent" style="margin: 0; font-family: 'Inter', system-ui, sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: {{t.muted}}">Recent writing</h2>
+</div>
+<div style="flex: 999 1 460px; min-width: 0; display: flex; flex-direction: column">
+<sc-for list="{{posts}}" as="p" hint-placeholder-count="3">
+<a href="Article.dc.html" style="display: flex; flex-direction: column; gap: 8px; padding: 24px 0; border-bottom: 1px solid {{t.line}}">
+<span style="font-family: 'Inter', system-ui, sans-serif; font-size: 13px; color: {{t.muted}}">{{p.meta}}</span>
+<span style="font-size: 28px; line-height: 1.25; font-weight: 400">{{p.title}}</span>
+<span style="font-size: 18px; line-height: 1.55; color: {{t.muted}}; max-width: 620px">{{p.dek}}</span>
+</a>
+</sc-for>
+<a href="Writing.dc.html" style="padding-top: 24px; font-family: 'Inter', system-ui, sans-serif; font-size: 15px; color: {{t.accent}}">All writing →</a>
+</div>
+</section>
+
+<section id="about" aria-labelledby="what" style="padding: 56px 0; border-top: 1px solid {{t.line}}; display: flex; flex-wrap: wrap; gap: 24px 64px">
+<div style="flex: 1 1 200px; max-width: 260px">
+<h2 id="what" style="margin: 0; font-family: 'Inter', system-ui, sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: {{t.muted}}">What we do</h2>
+</div>
+<div style="flex: 999 1 460px; min-width: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 40px 48px">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<h3 style="margin: 0; font-size: 22px; font-weight: 500">Systems in Rust</h3>
+<p style="margin: 0; font-size: 17px; line-height: 1.6; color: {{t.muted}}">Services where correctness and latency both matter, written to be read and audited.</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<h3 style="margin: 0; font-size: 22px; font-weight: 500">Event-driven platforms</h3>
+<p style="margin: 0; font-size: 17px; line-height: 1.6; color: {{t.muted}}">Kafka-based pipelines for order flow, ledgers, and reconciliation.</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<h3 style="margin: 0; font-size: 22px; font-weight: 500">Infrastructure</h3>
+<p style="margin: 0; font-size: 17px; line-height: 1.6; color: {{t.muted}}">Kubernetes and Terraform, built to be reproducible and to fail in small pieces.</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<h3 style="margin: 0; font-size: 22px; font-weight: 500">Security by default</h3>
+<p style="margin: 0; font-size: 17px; line-height: 1.6; color: {{t.muted}}">Threat modelling and review as part of delivery, not a step after it.</p>
+</div>
+</div>
+</section>
+
+<section id="contact" aria-labelledby="touch" style="padding: 72px 0 80px; border-top: 1px solid {{t.line}}; display: flex; flex-direction: column; gap: 20px">
+<h2 id="touch" style="margin: 0; max-width: 700px; font-size: 40px; line-height: 1.15; font-weight: 400; letter-spacing: -0.01em">Have a hard problem in financial technology?</h2>
+<p style="margin: 0; max-width: 560px; font-size: 19px; line-height: 1.6; color: {{t.muted}}">Write to us with a short description. We reply personally.</p>
+<a href="mailto:[EMAIL ADDRESS]" style="font-family: 'Inter', system-ui, sans-serif; font-size: 15px; display: inline-flex; align-items: center; min-height: 44px; padding: 0 22px; background: {{t.fg}}; color: {{t.bg}}; border-radius: 999px; width: fit-content">Contact us</a>
+</section>
+
+<footer style="padding: 32px 0 56px; border-top: 1px solid {{t.line}}; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 32px; font-family: 'Inter', system-ui, sans-serif; font-size: 13px; color: {{t.muted}}">
+<span>© 2026 3304813 Nova Scotia Ltd., operating as Three Three Zero.</span>
+<span>Nova Scotia, Canada</span>
+</footer>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1280,"height":1560}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const theme = (this.state && this.state.theme) || this.props.theme || 'light';
+    const dark = theme === 'dark';
+    const t = dark
+      ? { bg: '#0E1012', fg: '#ECEAE5', muted: '#A3A7AE', line: '#2A2D32', accent: '#8EC1D3' }
+      : { bg: '#FBFAF8', fg: '#14161A', muted: '#565B63', line: '#E3E1DB', accent: '#1D4E5F' };
+    return {
+      t,
+      toggle: () => this.setState({ theme: dark ? 'light' : 'dark' }),
+      toggleText: dark ? 'Light' : 'Dark',
+      toggleLabel: dark ? 'Switch to light theme' : 'Switch to dark theme',
+      posts: [
+        { meta: 'Case study · Oct 2026', title: 'Event sourcing order flow on Kafka', dek: 'How we structured topics, ordering guarantees, and replay for a latency-sensitive trading workload.' },
+        { meta: 'Technical note · Sep 2026', title: 'Drawing the matching engine boundary in Rust', dek: 'Where the type system helps, where it does not, and the interfaces we kept deliberately small.' },
+        { meta: 'Essay · Aug 2026', title: 'Reproducible infrastructure with a small blast radius', dek: 'Terraform layout, state isolation, and the review habits that keep changes boring.' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

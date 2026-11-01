@@ -3,37 +3,19 @@ repos:
     rev: v4.5.0
     hooks:
       - id: trailing-whitespace
+        exclude: ^docs/design/reference/
       - id: end-of-file-fixer
+        exclude: ^docs/design/reference/
       - id: check-yaml
       - id: check-json
+      - id: check-toml
       - id: check-added-large-files
 
   - repo: local
     hooks:
-      - id: npm-lint
-        name: ESLint
-        entry: npm run lint
+      - id: zola-check
+        name: zola check
+        entry: zola check --skip-external-links
         language: system
-        types: [javascript, jsx, ts, tsx]
         pass_filenames: false
-
-      - id: npm-typecheck
-        name: TypeScript
-        entry: npm run typecheck
-        language: system
-        types: [javascript, jsx, ts, tsx]
-        pass_filenames: false
-
-      - id: npm-format
-        name: Prettier
-        entry: npm run format
-        language: system
-        types: [javascript, jsx, ts, tsx, json, yaml]
-        pass_filenames: false
-
-      - id: npm-test
-        name: Jest Tests
-        entry: npm test
-        language: system
-        types: [javascript, jsx, ts, tsx]
-        pass_filenames: false
+        files: ^(config\.toml|content/|templates/|static/|highlight/)

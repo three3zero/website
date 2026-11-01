@@ -1,0 +1,58 @@
+{
+  "v": 3,
+  "attachments": {},
+  "boards": {
+    "Article.dc.html": {
+      "expand": "fill",
+      "h": 2300,
+      "is_interactive": true,
+      "title": "Case study",
+      "w": 1280,
+      "x": 2720,
+      "y": 0
+    },
+    "Main.dc.html": {
+      "expand": "fill",
+      "h": 1560,
+      "is_interactive": true,
+      "title": "Home",
+      "w": 1280,
+      "x": 0,
+      "y": 0
+    },
+    "Writing.dc.html": {
+      "expand": "fill",
+      "h": 980,
+      "is_interactive": true,
+      "title": "Writing",
+      "w": 1280,
+      "x": 1360,
+      "y": 0
+    }
+  },
+  "createdOnFiles": {
+    "at": "2026-10-26T12:00:00Z",
+    "v": 1
+  },
+  "designSystems": [],
+  "launch": {
+    "view": "canvas"
+  },
+  "notes": {
+    "t1": {
+      "kind": "title1",
+      "maxW": 4000,
+      "text": "Three Three Zero: light and dark, text first",
+      "w": 240,
+      "x": 0,
+      "y": -260
+    }
+  },
+  "order": [
+    "Main.dc.html",
+    "Writing.dc.html",
+    "Article.dc.html"
+  ],
+  "pages": [],
+  "title": "Three Three Zero Website"
+}

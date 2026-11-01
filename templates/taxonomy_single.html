@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}{{ term.name }} · Writing · {{ config.title }}{% endblock title %}
+{% block description %}{{ term.name }} articles from {{ config.title }}.{% endblock description %}
+{% block nav_writing %} aria-current="page"{% endblock nav_writing %}
+
+{% block content %}
+<section class="page-intro" aria-labelledby="page-title">
+  <h1 id="page-title">Writing</h1>
+  <p class="lede">{{ writing.description }}</p>
+  {%- set active = term.name %}
+  {%- include "partials/filter_chips.html" %}
+</section>
+
+{%- set posts = paginator.pages if paginator else term.pages %}
+<ul class="post-list" aria-label="{{ term.name }} articles">
+  {%- for post in posts %}
+  {%- include "partials/post_row.html" %}
+  {%- endfor %}
+</ul>
+{%- include "partials/pagination.html" %}
+{% endblock content %}
